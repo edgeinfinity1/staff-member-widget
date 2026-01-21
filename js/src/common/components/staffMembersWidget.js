@@ -44,19 +44,25 @@ export default class MyWidget extends Widget {
       <div className="staff-members-container">
         <div>
           {this.userGroups.map((user) => {
-            const group = user.groups();
+            // const group = user.groups();
+            const groups = user.groups() || [];
             return (
               <div className="staff-members-flex">
                 <div className="staffMemberAvatar">
                   <Tooltip text={user.displayName()}>{avatar(user)}</Tooltip>
                 </div>
-                <div className="staff-members-col">
+                <div className="staff-members-groups">
                   <div className="staff-members-details">
                     <Link href={app.route.user(user)} className="staffmemberslink">
                       <strong>{user.username()}</strong>
                     </Link>
                   </div>
-                  <div>{group[0].data.attributes.nameSingular}</div>
+                    {groups.map((group, index) => (
+                      <span className="staff-members-group" key={group.id()}>
+                        {group.attribute('nameSingular')}
+                        {index < groups.length - 1 ? ', ' : ''}
+                      </span>
+                    ))}
                 </div>
               </div>
             );
