@@ -1,4 +1,4 @@
-import Widget from 'flarum/extensions/afrux-forum-widgets-core/common/components/Widget';
+import Widget from 'flarum/extensions/fof-forum-widgets-core/common/components/Widget';
 import app from 'flarum/forum/app';
 import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
 import avatar from 'flarum/common/helpers/avatar';
@@ -57,12 +57,12 @@ export default class MyWidget extends Widget {
                       <strong>{user.username()}</strong>
                     </Link>
                   </div>
-                    {groups.map((group, index) => (
-                      <span className="staff-members-group" key={group.id()}>
-                        {group.attribute('nameSingular')}
-                        {index < groups.length - 1 ? ', ' : ''}
-                      </span>
-                    ))}
+                  {groups.map((group, index) => (
+                    <span className="staff-members-group" key={group.id()}>
+                      {group.attribute('nameSingular')}
+                      {index < groups.length - 1 ? ', ' : ''}
+                    </span>
+                  ))}
                 </div>
               </div>
             );

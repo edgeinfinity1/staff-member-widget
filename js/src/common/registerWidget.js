@@ -1,4 +1,4 @@
-import Widgets from 'flarum/extensions/afrux-forum-widgets-core/common/extend/Widgets';
+import Widgets from 'flarum/extensions/fof-forum-widgets-core/common/extend/Widgets';
 
 import MyWidget from './components/staffMembersWidget';
 
@@ -11,7 +11,8 @@ export default function (app) {
       placement: 'end',
       position: 1,
       isDisabled: () => {
-        return !app.forum.attribute('canSearchUsers');
+        const onlineUsers = app.forum.onlineUsers();
+        return (!app.forum.attribute('canSearchUsers') || !(!app.forum.attribute('canViewOnlineUsersWidget') || !onlineUsers || !onlineUsers.length));
       },
     })
     .extend(app, 'justoverclock-staff-members-widget');
